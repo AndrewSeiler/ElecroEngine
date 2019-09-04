@@ -10,7 +10,8 @@ namespace electro_engine { namespace graphics {
 		std::vector<Renderable2D*> m_Renderables;
 		math::mat4 m_TransformationMatrix;
 	public:
-		Group();
+		Group(const math::mat4& transform);
+		void add(Renderable2D* renderable);
 		void submit(Renderer2D* renderer) const override;
 	};
 

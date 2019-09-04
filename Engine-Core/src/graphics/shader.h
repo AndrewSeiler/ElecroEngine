@@ -12,7 +12,7 @@ namespace electro_engine { namespace graphics {
 	class Shader
 	{
 	private:
-		GLuint m_ShaderID;
+		//GLuint m_ShaderID;
 		const char* m_VertPath;
 		const char* m_FragPath;
 
@@ -20,6 +20,8 @@ namespace electro_engine { namespace graphics {
 
 		GLuint load();
 	public:
+		GLuint m_ShaderID;
+		
 		Shader(const char* vertPath, const char* fragPath);
 		~Shader();
 
