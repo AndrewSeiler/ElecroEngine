@@ -76,9 +76,19 @@ namespace electro_engine { namespace graphics {
 		glUniform1i(getUniformLocation(name), value);
 	}
 
+	void Shader::setUniform1iv(const GLchar* name, int* value, int count)
+	{
+		glUniform1iv(getUniformLocation(name), count, value);
+	}
+
 	void Shader::setUniform1f(const GLchar* name, int value)
 	{
 		glUniform1f(getUniformLocation(name), value);
+	}
+
+	void Shader::setUniform1fv(const GLchar* name, float* value, int count)
+	{
+		glUniform1fv(getUniformLocation(name), count, value);
 	}
 
 	void Shader::setUniform2f(const GLchar* name, const math::vec2& vector)

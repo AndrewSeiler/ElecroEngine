@@ -6,7 +6,7 @@
 #include "../math/math.h"
 #include "shader.h"
 #include "renderer2d.h"
-
+#include "texture.h"
 
 namespace electro_engine { namespace graphics {
 
@@ -14,7 +14,7 @@ namespace electro_engine { namespace graphics {
 	{
 		math::vec3 vertices;
 		math::vec2 uv;
-		unsigned int tid;
+		float tid;
 		unsigned int color;
 	};
 
@@ -35,6 +35,7 @@ namespace electro_engine { namespace graphics {
 		math::vec3 m_Position;
 		math::vec4 m_Color;
 		std::vector<math::vec2> m_UV;
+		Texture* m_Texture;
 
 		Renderable2D(math::vec3 position, math::vec2 size, math::vec4 color)
 			: m_Position(position), m_Size(size), m_Color(color)
@@ -51,6 +52,8 @@ namespace electro_engine { namespace graphics {
 		inline const math::vec2& getSize() const { return m_Size; }
 		inline const math::vec4& getColor() const { return m_Color; }
 		inline const std::vector<math::vec2>& getUV() const { return m_UV; }
+		
+		inline const GLuint getTID() const { return m_Texture == nullptr ? 0 : m_Texture->getID(); }
 	};
 
 } }

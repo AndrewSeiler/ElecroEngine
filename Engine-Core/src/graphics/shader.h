@@ -26,7 +26,9 @@ namespace electro_engine { namespace graphics {
 		~Shader();
 
 		void setUniform1i(const GLchar* name, int value);
+		void setUniform1iv(const GLchar* name, int* value, int count);
 		void setUniform1f(const GLchar* name, int value);
+		void setUniform1fv(const GLchar* name, float* value, int count);
 		void setUniform2f(const GLchar* name, const math::vec2& vector);
 		void setUniform3f(const GLchar* name, const math::vec3& vector);
 		void setUniform4f(const GLchar* name, const math::vec4& vector);

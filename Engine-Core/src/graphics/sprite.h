@@ -9,6 +9,7 @@ namespace electro_engine { namespace graphics {
 	private:
 	public:
 		Sprite(float x, float y, float width, float height, const math::vec4& color);
+		Sprite(float x, float y, float width, float height, Texture* texture);
 	};
 
 } }

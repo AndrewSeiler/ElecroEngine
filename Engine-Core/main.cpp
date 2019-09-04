@@ -3,8 +3,10 @@
 #include "src/graphics/buffers/buffer.h"
 #include "src/graphics/buffers/indexbuffer.h"
 #include "src/graphics/buffers/vertexarray.h"
+
 #include "src/graphics/layers/tilelayer.h"
 #include "src/graphics/layers/group.h"
+
 #include "src/graphics/renderable2d.h"
 #include "src/graphics/simple2drenderer.h"
 #include "src/graphics/batchrenderer2d.h"
@@ -13,7 +15,9 @@
 #include "src/graphics/window.h"
 #include "src/graphics/shader.h"
 #include "src/graphics/texture.h"
+
 #include "src/math/math.h"
+
 #include "src/utils/timer.h"
 #include "src/utils/imageload.h"
 
@@ -39,19 +43,31 @@ int main()
 
 	TileLayer layer(&shader);
 
+	Texture* textures[] =
+	{
+		new Texture("a.png"),
+		new Texture("b.png"),
+		new Texture("c.png")
+	};
+
 	for (float y = -9.0f; y < 9.0f; y++)
 	{
 		for (float x = -16.0f; x < 16.0f; x++)
 		{
-			layer.add(new Sprite(x, y, 0.9f, 0.9f, math::vec4(rand() % 1000 / 1000.0f, 0, 1, 1)));
+			//layer.add(new Sprite(x, y, 0.9f, 0.9f, math::vec4(rand() % 1000 / 1000.0f, 0, 1, 1)));
+			layer.add(new Sprite(x, y, 0.9f, 0.9f, textures[rand() % 3]));
 		}
 	}
 
-	glActiveTexture(GL_TEXTURE0);
-	Texture texture("test.png");
-	texture.bind();
+
+	GLint texIDs[] =
+	{
+		0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	};
 
 	shader.enable();
+	shader.setUniform1iv("textures", texIDs, 10);
+
 	shader.setUniform1i("tex", 0);
 	shader.setUniformMat4("pr_matrix", mat4::orthographic(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f));
 
@@ -79,6 +95,9 @@ int main()
 			frames = 0;
 		}
 	}
+
+	for(Texture* tex : textures)
+		delete tex;
 
 	return 0;
 }

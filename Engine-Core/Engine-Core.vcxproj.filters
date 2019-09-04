@@ -51,4 +51,8 @@
     <None Include="src\shaders\basic.vert" />
     <None Include="src\shaders\basic.frag" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="b.png" />
+    <Image Include="a.png" />
+  </ItemGroup>
 </Project>
